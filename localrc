@@ -1,0 +1,40 @@
+# Misc
+DATABASE_PASSWORD=password
+ADMIN_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=password
+RABBIT_PASSWORD=password
+ 
+# Enable Logging
+LOGFILE=/opt/stack/logs/stack.sh.log
+VERBOSE=True
+LOG_COLOR=True
+SCREEN_LOGDIR=/opt/stack/logs
+ 
+# Prerequisite
+ENABLED_SERVICES=rabbit,mysql,key
+ 
+# Ceph!
+ENABLED_SERVICES+=,ceph
+CEPH_LOOPBACK_DISK_SIZE=10G
+CEPH_CONF=/etc/ceph/ceph.conf
+CEPH_REPLICAS=1
+ 
+# Glance - Image Service
+ENABLED_SERVICES+=,g-api,g-reg
+GLANCE_CEPH_USER=glancy
+GLANCE_CEPH_POOL=imajeez
+ 
+# Cinder - Block Device Service
+ENABLED_SERVICES+=,cinder,c-api,c-vol,c-sch,c-bak
+CINDER_DRIVER=ceph
+CINDER_CEPH_USER=cindy
+CINDER_CEPH_POOL=volumeuh
+CINDER_CEPH_UUID=6d52eb95-12f3-47e3-9eb9-0c1fe4142426
+CINDER_BAK_CEPH_POOL=backeups
+CINDER_BAK_CEPH_USER=cind-backeups
+CINDER_ENABLED_BACKENDS=ceph,lvm
+ 
+# Nova - Compute Service
+ENABLED_SERVICES+=,n-api,n-crt,n-cpu,n-cond,n-sch,n-net
+NOVA_CEPH_POOL=vmz
